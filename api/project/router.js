@@ -9,9 +9,11 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  res.status(201).json({
-    message: 'Posted Project',
-  });
+  Projects.postProjects(req.body)
+    .then(response => {
+      console.log(response);
+      res.status(201).json(response);
+    });
 });
 
 router.use('*', (req, res) => {
