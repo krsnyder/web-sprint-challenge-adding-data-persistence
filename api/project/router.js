@@ -11,7 +11,6 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   Projects.postProjects(req.body)
     .then(response => {
-      console.log(response);
       res.status(201).json(response);
     });
 });

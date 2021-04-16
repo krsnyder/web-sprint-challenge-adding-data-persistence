@@ -1,6 +1,5 @@
 const db = require('../../data/dbConfig');
 
-// !!(value) returns the boolean
 async function getProjects() {
   const rows = await db('projects');
 
@@ -11,6 +10,7 @@ async function getProjects() {
       project_id: row.project_id,
       project_name: row.project_name,
       project_description: row.project_description,
+      // !!(value) returns the desired boolean from an integer
       project_completed: !!row.project_completed,
     });
   });
@@ -20,12 +20,7 @@ async function getProjects() {
 
 async function postProjects(newProject) {
   return db('projects').insert(newProject)
-    .then(([id]) => db('projects').where('project_id', '=', id));
-
-  // project_id: newProject.project_id,
-  // project_name: newProject.project_name,
-  // project_description: newProject.project_description,
-  // project_completed: newProject.project_completed,
+    .then(([id]) => db('projects').where('project_id', '=', id).first());
 }
 
 module.exports = {
