@@ -15,5 +15,5 @@ const project_resources = [
 exports.project_resources = project_resources;
 
 exports.seed = function (knex) {
-  return ('project_resources').insert(project_resources);
+  return knex('project_resources').insert(project_resources);
 };
