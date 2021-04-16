@@ -26,11 +26,11 @@ exports.up = function (knex) {
     })
     .createTable('project_resources', table => {
       table.increments('project_resource_id');
-      table.integer('project_id')
+      table.integer('task_id')
         .unsigned()
         .notNullable()
-        .references('project_id')
-        .inTable('projects')
+        .references('task_id')
+        .inTable('tasks')
         .onDelete('RESTRICT')
         .onUpdate('RESTRICT');
       table.integer('resource_id')
