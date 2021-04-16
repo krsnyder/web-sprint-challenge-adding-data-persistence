@@ -19,5 +19,21 @@
         "react"
     ],
     "rules": {
+        "no-console": "off",
+        "camelcase": "off",
+        "radix": "off",
+        "arrow-parens": 0
+    },
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "extensions": [
+                    ".js",
+                    ".jsx",
+                    ".ts",
+                    ".tsx"
+                ]
+            }
+        }
     }
 }
