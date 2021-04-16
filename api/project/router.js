@@ -8,11 +8,15 @@ router.get('/', (req, res) => {
     });
 });
 
-router.post('/', (req, res) => {
-  Projects.postProjects(req.body)
-    .then(response => {
-      res.status(201).json(response);
-    });
+router.post('/', (req, res, next) => {
+  if (!req.body.project_name) {
+    next({ status: 400, message: 'Project name required' });
+  } else {
+    Projects.postProjects(req.body)
+      .then(response => {
+        res.status(201).json(response);
+      });
+  }
 });
 
 router.use('*', (req, res) => {

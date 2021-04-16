@@ -19,8 +19,11 @@ async function getProjects() {
 }
 
 async function postProjects(newProject) {
-  return db('projects').insert(newProject)
+  const newPost = await db('projects').insert(newProject)
     .then(([id]) => db('projects').where('project_id', '=', id).first());
+
+  newPost.project_completed = !!newPost.project_completed;
+  return newPost;
 }
 
 module.exports = {
