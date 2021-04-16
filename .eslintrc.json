@@ -22,7 +22,8 @@
         "no-console": "off",
         "camelcase": "off",
         "radix": "off",
-        "arrow-parens": 0
+        "arrow-parens": 0,
+        "no-param-reassign": 0
     },
     "settings": {
         "import/resolver": {
