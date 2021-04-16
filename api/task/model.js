@@ -12,6 +12,7 @@ async function getTasks() {
       'p.project_description',
     );
 
+  // Using !! to convert the integer value to a bool
   rows.forEach(row => {
     row.task_completed = !!row.task_completed;
   });
