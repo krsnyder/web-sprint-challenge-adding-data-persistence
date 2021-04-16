@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Tasks = require('./model');
+const Projects = require('../project/model');
 
 router.get('/', (req, res, next) => {
   Tasks.getTasks()
@@ -9,11 +10,19 @@ router.get('/', (req, res, next) => {
     .catch(next);
 });
 
-router.post('/', (req, res, next) => {
+router.post('/', async (req, res, next) => {
   const { task_description, project_id } = req.body;
 
-  if (!task_description || !project_id) {
+  const allProjects = await Projects.getProjects();
+  const projectIds = [];
+  allProjects.forEach(project => {
+    projectIds.push(project.project_id);
+  });
+
+  if (!task_description || !parseInt(project_id)) {
     next({ status: 400, message: 'Task description and project id required' });
+  } else if (!projectIds.includes(project_id)) {
+    next({ status: 400, message: `${project_id} is not a valid project` });
   } else {
     Tasks.postTasks(req.body)
       .then(newTask => {

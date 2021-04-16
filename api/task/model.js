@@ -24,7 +24,6 @@ async function postTasks(sentTask) {
     .then(([id]) => db('tasks').where('task_id', '=', id).first());
 
   createdTask.task_completed = !!createdTask.task_completed;
-  console.log(createdTask);
   return createdTask;
 }
 
