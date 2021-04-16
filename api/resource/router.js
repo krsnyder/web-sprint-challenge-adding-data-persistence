@@ -1,9 +1,11 @@
 const router = require('express').Router();
+const Resources = require('./model');
 
 router.get('/', (req, res) => {
-  res.status(200).json({
-    message: 'Received Resources',
-  });
+  Resources.getResources()
+    .then(response => {
+      res.status(200).json(response);
+    });
 });
 
 router.post('/', (req, res) => {
