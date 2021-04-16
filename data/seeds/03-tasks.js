@@ -1,4 +1,5 @@
 const tasks = [
+  // Tasks for the first project
   {
     task_description: 'Dig the area needed for the foundation',
     task_notes: 'Make sure you stop before you reach China!',
@@ -17,6 +18,8 @@ const tasks = [
     task_completed: 0,
     project_id: 1,
   },
+
+  // Tasks for the second project
   {
     task_description: 'Measure and cut the wood',
     task_notes: 'Measure twice, cut once!',
