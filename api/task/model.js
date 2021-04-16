@@ -19,11 +19,13 @@ async function getTasks() {
   return rows;
 }
 
-async function postTasks(newTasks) {
-  const newPost = await db('tasks').insert(newTasks)
-    .then(([id]) => db('tasks').where('tasks_id', '=', id).first());
+async function postTasks(sentTask) {
+  const createdTask = await db('tasks').insert(sentTask)
+    .then(([id]) => db('tasks').where('task_id', '=', id).first());
 
-  return newPost;
+  createdTask.task_completed = !!createdTask.task_completed;
+  console.log(createdTask);
+  return createdTask;
 }
 
 module.exports = {
